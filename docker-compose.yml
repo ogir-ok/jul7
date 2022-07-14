@@ -13,7 +13,7 @@ services:
 
   web:
     build: .
-    image: jul7-django
+    image: jul7-dango
     links:
       - postgres-db:db
     volumes:

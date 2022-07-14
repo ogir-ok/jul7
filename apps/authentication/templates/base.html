@@ -6,10 +6,11 @@
 </head>
 
 <body>
+    Current user: {{ request.user }}
     <div id="sidebar">
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/list-users/">User list</a></li>
+            <li><a href="{% url "lms:list-students" %}"> List students</a></li>
+            <li><a href="{% url "accounts:user-logout" %}"> Log Out</a> </li>
         </ul>
     </div>
 
