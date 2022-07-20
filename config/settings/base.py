@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'apps.authentication.apps.AuthenticationConfig',
-    'apps.lms.apps.LMSConfig'
+    'apps.lms.apps.LMSConfig',
+    'apps.movies.apps.MoviesConfig'
 ]
 
 MIDDLEWARE = [

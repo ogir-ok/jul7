@@ -1,0 +1,3 @@
+[submodule "dataset/imdb2000"]
+	path = dataset/imdb2000
+	url = git@github.com:ogir-ok/imdb2000.git
