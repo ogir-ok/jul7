@@ -6,6 +6,12 @@
 </head>
 
 <body>
+<ul>
+    {% for message in messages %}
+        <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+
     Current user: {{ request.user }}
     <div id="sidebar">
         <ul>

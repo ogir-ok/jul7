@@ -1,5 +1,19 @@
 {% extends "base.html" %}
+{% load lms %}
 
 {% block content %}
     LMS STUDENTS LIST
+
+    {{ form.as_p }}
+
+    {% my_tag %}
+<hr>
+    {% for group in groups %}
+        {{ group.name }} <br>
+        {{ group.teacher.name }}<br>
+        <hr/>
+        {% for student in group.students.all %}
+            {{ student.name }}<br
+        {% endfor %}
+    {% endfor %}
 {% endblock %}

@@ -1,9 +1,9 @@
 from django.urls import path
 
-from .views import list_students
+from .views import ListStudentsView
 
 app_name = 'apps.lms'
 
 urlpatterns = [
-    path('', list_students, name='list-students')
+    path('', ListStudentsView.as_view(), name='list-students')
 ]
