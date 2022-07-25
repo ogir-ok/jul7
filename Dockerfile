@@ -1,9 +1,15 @@
-FROM python:3.9
+FROM python:3.10
 
-ADD requirements.txt /requirements.txt
-RUN pip install -r requirements.txt
+ENV PYTHONUNBUFFERED=1
 
-ADD . /scr
 WORKDIR /src
 
-CMD python manage.py runserver 0.0.0.0:8000
+COPY requirements.txt .
+
+RUN pip install -r requirements.txt
+
+COPY . /src
+
+EXPOSE 8000
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
