@@ -9,7 +9,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/pgdata/
     ports:
-      - 5432:5432
+      - "5432:5432"
 
   web:
     build: .
@@ -21,7 +21,7 @@ services:
     environment:
       - DJANGO_SETTINGS_MODULE=config.settings.docker
     ports:
-      - 8000:8000
+      - "8000:8000"
 
 volumes:
   pgdata: {}
