@@ -21,7 +21,7 @@ class Movie(models.Model):
     genres = ArrayField(models.CharField(max_length=255), verbose_name=_("Genres"), null=True)
 
     def __str__(self):
-        return f"{self.name}"
+        return self.name
 
 
 class Person(models.Model):
@@ -32,7 +32,7 @@ class Person(models.Model):
     death_date = models.DateField(verbose_name=_("Death Date"), null=True)
 
     def __str__(self):
-        return f"{self.name}"
+        return self.name
 
 
 class PersonMovie(models.Model):
