@@ -1,5 +1,12 @@
 version: "3.9"
 services:
+  rabbitmq:
+    image: rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=password
+      - RABBITMQ_DEFAULT_VHOST=celery_tasks
+
   postgres-db:
     image: postgres
     environment:
@@ -16,12 +23,25 @@ services:
     image: jul7-dango
     links:
       - postgres-db:db
+      - rabbitmq:rabbitmq
     volumes:
       - .:/src
     environment:
-      - DJANGO_SETTINGS_MODULE=config.settings.docker
+      - DJANGO_SETTINGS_MODULE=config.settings.dev
     ports:
       - 8000:8000
+
+  celery:
+    build: .
+    image: jul7-dango
+    links:
+      - postgres-db:db
+      - rabbitmq:rabbitmq
+    volumes:
+      - .:/src
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.dev
+    command: "celery -A config.celery.app worker"
 
 volumes:
   pgdata: {}

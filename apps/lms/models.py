@@ -6,6 +6,9 @@ class Student(models.Model):
     birth_date = models.DateField()
     groups = models.ManyToManyField('Group', related_name='students')
 
+    def __str__(self):
+        return self.name
+
 
 class Teacher(models.Model):
     name = models.CharField(max_length=255)
