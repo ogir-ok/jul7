@@ -20,3 +20,5 @@ DATABASES = {
 CELERY_BROKER_URL = 'amqp://user:password@rabbitmq:5672/celery_tasks'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+STATIC_ROOT = '/static/'

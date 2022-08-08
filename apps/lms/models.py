@@ -14,6 +14,9 @@ class Teacher(models.Model):
     name = models.CharField(max_length=255)
     birth_date = models.DateField()
 
+    def __str__(self):
+        return self.name
+
 
 class Group(models.Model):
     name = models.CharField(max_length=255)
@@ -21,7 +24,12 @@ class Group(models.Model):
     end_date = models.DateField()
     teacher = models.ForeignKey('Teacher', on_delete=models.PROTECT, related_name='groups')
 
+    def __str__(self):
+        return self.name
 
 class Lesson(models.Model):
     name = models.CharField(max_length=255)
     date = models.DateTimeField()
+
+    def __str__(self):
+        return self.name

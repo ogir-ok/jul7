@@ -8,12 +8,11 @@
 
     {% my_tag %}
 <hr>
-    {% for group in groups %}
-        {{ group.name }} <br>
-        {{ group.teacher.name }}<br>
-        <hr/>
-        {% for student in group.students.all %}
-            {{ student.name }}<br
+    <form method="get" action="{% url "lms:second-page" %}">
+        {% for student in object_list %}
+            <input type="checkbox" name="students" value="{{ student.id }}"/>
+            {{ student.name }} <br>
         {% endfor %}
-    {% endfor %}
+        <input type="submit"/>
+    </form>
 {% endblock %}
