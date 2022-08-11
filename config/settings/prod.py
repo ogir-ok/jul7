@@ -13,3 +13,5 @@ EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'true').lower() in ('1', 'true')
 
 
 DEBUG = False
+
+ALLOWED_HOSTS = ['3.88.174.111', 'jul7.ogir-ok.com']

@@ -10,5 +10,4 @@ def my_filter(x):
 
 @register.simple_tag
 def my_tag():
-    raise ValueError
     return "My tag content"
