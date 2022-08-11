@@ -46,6 +46,8 @@ services:
     volumes:
       - ./config/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./static:/static:ro
+    links:
+      - web:web
     ports:
       - 8000:80
 
