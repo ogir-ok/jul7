@@ -1,7 +1,7 @@
 import os
 from time import sleep
 
-from invoke import task, exceptions, env
+from invoke import task, exceptions
 
 from django.conf import settings
 
