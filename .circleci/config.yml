@@ -1,37 +1,33 @@
 version: 2.1
 
 jobs:
-  prospector:
+  deploy-prod:
     docker:
-      - image: python:3.9
+      - image: cimg/base:stable
     steps:
       - checkout
       - run:
-          name: "Say hello"
-          command: "pip install -r requirements-dev.txt; prospector"
-  unittest:
-    docker:
-      - image: python:3.9
-    steps:
-      - checkout
+          name: "update apt"
+          command: "sudo apt-get update"
       - run:
-          name: "Run unittests"
-          command: "pip install -r requirements-dev.txt; ./manage.py test"
-  deploy:
-    docker:
-      - image: python:3.9
-    steps:
-      - checkout
+          name: "Install python3-pip"
+          command: "sudo apt-get install python3-pip"
+
       - run:
-          name: "Deploy to server"
-          command: "echo Deploying"
+          name: "install deploy requierements"
+          command: "pip3 install pexpect boto3"
+
+      - add_ssh_keys:
+          fingerprints:
+            - "68:e3:70:27:8f:07:39:33:3d:db:79:39:20:34:da:31"
+
+      - run:
+          name: "start deploy"
+          command: "python3 deploy.py"
+# Invoke jobs via workflows
+# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  code-check:
+  deploy-prod:
     jobs:
-      - prospector
-      - unittest
-  deploy:
-    jobs:
-      - deploy
-      when:
-        branch: main
+      - deploy-prod
+
