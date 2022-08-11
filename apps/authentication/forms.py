@@ -41,4 +41,3 @@ class LoginForm(forms.Form):
             raise forms.ValidationError('Incorrect password.')
 
         return self.cleaned_data
-

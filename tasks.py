@@ -15,7 +15,7 @@ DB_ARGS = f"-h {settings.DATABASES['default']['HOST']}" \
 def waitdb(ctx):
     while True:
         try:
-            ctx.run(f"PGPASSWORD={settings.DATABASES['default']['PASSWORD']} psql {DB_ARGS} -c '\l'")
+            ctx.run(f"PGPASSWORD={settings.DATABASES['default']['PASSWORD']} psql {DB_ARGS} -c '\\l'")
             return
         except exceptions.Failure:
             print('err')

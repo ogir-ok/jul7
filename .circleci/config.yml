@@ -1,4 +1,3 @@
-
 version: 2.1
 
 jobs:
@@ -10,10 +9,29 @@ jobs:
       - run:
           name: "Say hello"
           command: "pip install -r requirements-dev.txt; prospector"
-
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+  unittest:
+    docker:
+      - image: python:3.9
+    steps:
+      - checkout
+      - run:
+          name: "Run unittests"
+          command: "pip install -r requirements-dev.txt; ./manage.py test"
+  deploy:
+    docker:
+      - image: python:3.9
+    steps:
+      - checkout
+      - run:
+          name: "Deploy to server"
+          command: "echo Deploying"
 workflows:
   code-check:
     jobs:
       - prospector
+      - unittest
+  deploy:
+    jobs:
+      - deploy
+      when:
+        branch: main
