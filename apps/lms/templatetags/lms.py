@@ -10,4 +10,4 @@ def my_filter(x):
 
 @register.simple_tag
 def my_tag():
-    return "My tag content DEPLOYED"
+    return "mY TAG CONTENT deployed a"
