@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run:
           name: "Say hello"
-          command: "pip install -r requirements-dev; prospector"
+          command: "pip install -r requirements-dev.txt; prospector"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
