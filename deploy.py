@@ -48,7 +48,7 @@ def deploy_host(instance):
         raise ValueError('No env vars provided')
 
     expect = Pexpect(deploy_host, default_expect=expect_value)
-    expect.cmd('pushd {}'.format('jul17'))
+    expect.cmd('pushd {}'.format('jul7'))
     expect.cmd('git fetch origin')
     expect.cmd('git reset --hard')
     expect.cmd('git checkout {}'.format(deploy_version))
