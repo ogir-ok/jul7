@@ -23,5 +23,9 @@ urlpatterns = [
     path('', include('apps.lms.urls', namespace='lms'))
 ]
 
+urlpatterns += [
+    path('api/v1/lms/', include('apps.lms.api_urls', namespace='lms-api')),
+    path('api/v1/auth/', include('apps.authentication.api_urls', namespace='auth-api'))
+]
 
 urlpatterns += staticfiles_urlpatterns()

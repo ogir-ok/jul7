@@ -6,5 +6,6 @@ app_name = 'apps.lms'
 
 urlpatterns = [
     path('', ListStudentsView.as_view(), name='list-students'),
-    path('second-page', SecondPageView.as_view(), name='second-page')
+    path('second-page', SecondPageView.as_view(), name='second-page'),
 ]
+
