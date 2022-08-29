@@ -10,6 +10,8 @@ from django.contrib.auth import get_user_model, login, logout
 from django.urls import reverse
 from django.views import View
 from django.views.generic import FormView, CreateView
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .forms import LoginForm, UserForm
 from .tasks import send_invitation_email
@@ -51,3 +53,8 @@ class LogoutView(View):
     def get(self, request):
         logout(request)
         return HttpResponseRedirect(reverse('accounts:user-login'))
+
+
+class CurrentUserAPIView(APIView):
+    def get(self, request):
+        return Response({'user': str(request.user)})

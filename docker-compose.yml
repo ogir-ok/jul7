@@ -12,6 +12,14 @@ services:
     ports:
       - 5432:5432
 
+  client:
+    image: node:16.14.2
+    volumes:
+      - ./client:/src
+    command: /bin/bash -c "cd /src/; npm i; npm run dev"
+    ports:
+      - 5137:5137
+
   web:
     build: .
     image: jul7-dango
@@ -40,6 +48,7 @@ services:
       - envs/db.env
       - envs/.env
     command: "celery -A config.celery.app worker"
+
 
   nginx:
     image: nginx
