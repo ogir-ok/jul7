@@ -1,12 +1,12 @@
 <template>
   <div>
     <div v-if="userStore.user">
-      {{ userStore.user }}
+      {{ userStore.getUserName }}
 
       <a href="#" @click="logOut"> Log out</a>
     </div>
     <div v-else>
-      <a href="#" @click="logIn"> Log In </a>
+      <RouterLink to="login"> Log In </RouterLink>
     </div>
   </div>
 </template>

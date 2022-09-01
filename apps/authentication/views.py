@@ -1,20 +1,16 @@
 from django.contrib import messages
-from django.core.mail import send_mail
-from django.core.mail import EmailMultiAlternatives
-from django.conf import settings
 
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.http import HttpResponseRedirect, Http404
 
 from django.contrib.auth import get_user_model, login, logout
 from django.urls import reverse
 from django.views import View
 from django.views.generic import FormView, CreateView
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework.generics import RetrieveAPIView
 
 from .forms import LoginForm, UserForm
 from .tasks import send_invitation_email
+from .serializer import UserSerializer
 
 User = get_user_model()
 
@@ -55,6 +51,11 @@ class LogoutView(View):
         return HttpResponseRedirect(reverse('accounts:user-login'))
 
 
-class CurrentUserAPIView(APIView):
-    def get(self, request):
-        return Response({'user': str(request.user)})
+class CurrentUserAPIView(RetrieveAPIView):
+    serializer_class = UserSerializer
+
+    def get_object(self):
+        if not self.request.user.is_authenticated:
+            raise Http404
+
+        return self.request.user

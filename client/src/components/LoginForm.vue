@@ -11,12 +11,15 @@
     <input type="password" class="form-control" id="exampleInputPassword1" v-model="data.password">\
     {{error.password}}
   </div>
+  {{error.details}}
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
 </template>
 
 <script>
+import {useUserStore} from "@/stores/user";
+import {apiFetch} from "@/utils/api"
 export default {
   name: "LoginForm",
   data(){
@@ -34,28 +37,23 @@ export default {
       e.preventDefault()
       e.stopPropagation()
 
-      console.log(this.data)
 
-      const resp = await fetch('/api/v1/auth/token/',
+      const resp = await apiFetch('/api/v1/auth/token/',
       {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
             body: JSON.stringify(this.data)
           }
       )
 
-      if (resp.status === 400) {
+      if (resp.status !== 200) {
         this.error = await resp.json()
         return
       } else {
-        const data =  await resp.json()
+        const data = await resp.json()
         localStorage.setItem('userToken', data.access)
+        await useUserStore().fetchUser();
+        location.href = '/';
       }
-
-
-
     }
   }
 }
