@@ -27,6 +27,14 @@ services:
       - envs/.env
     command: "/bin/bash -c 'pip install -r requirements.txt; invoke run'"
 
+  client:
+    image: node:16.14.2
+    volumes:
+      - ./client:/src
+    command: /bin/bash -c "cd /src/; npm i; npm run build"
+    ports:
+      - 5137:5137
+
   celery:
     build: .
     image: jul7-dango
