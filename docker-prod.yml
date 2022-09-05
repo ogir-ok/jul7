@@ -16,7 +16,7 @@ services:
     build: .
     image: jul7-dango
     links:
-      - postgres-db:db
+      #- postgres-db:db
       - rabbitmq:rabbitmq
     volumes:
       - .:/src
@@ -39,7 +39,7 @@ services:
     build: .
     image: jul7-dango
     links:
-      - postgres-db:db
+      #- postgres-db:db
       - rabbitmq:rabbitmq
     volumes:
       - .:/src
