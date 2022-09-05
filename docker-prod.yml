@@ -60,6 +60,7 @@ services:
       - web
     ports:
       - 80:80
+      - 443:443
     environment:
       - VIRTUAL_HOST=jul7.ogir-ok.com
       - LETSENCRYPT_HOST=jul7.ogir-ok.com
